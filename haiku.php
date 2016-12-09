@@ -20,7 +20,7 @@ class Haiku {
 
     var $debug = false;
 
-    var $defaultHaiku = "Something bad happened\nDisappointment is pending\nNo haiku for you\n";
+    var $defaultHaiku = "Something bad happened<br />Disappointment is pending<br />No haiku for you<br />";
     
     var $file = null;
     var $dictionary = array();
@@ -110,7 +110,7 @@ class Haiku {
         $syls = $syls - $trys; 
 
         if ($this->debug) {
-            echo $syls . ") ".$word. "\n";;
+            echo $syls . ") ".$word. "<br />";;
         }
 
         if ($syls < 1) {
@@ -135,7 +135,7 @@ class Haiku {
                 $syllables = mt_rand(1,$max);
 
                 if ($this->debug) {
-                    echo "\n". $max . " " . $syllables ." ";
+                    echo "<br />". $max . " " . $syllables ." ";
                 }
                
                 if (array_key_exists($syllables,$this->dictionary)) {
@@ -145,7 +145,7 @@ class Haiku {
                     $word = $this->dictionary[$syllables][$key]; 
 
                     if ($this->debug) {
-                        echo $word ."\n";
+                        echo $word ."<br />";
                     }
 
                     $haiku .= $word; 
@@ -155,7 +155,7 @@ class Haiku {
                 }
 
             }
-            $haiku .= "\n";
+            $haiku .= "<br />";
         }
 
         return $haiku;
