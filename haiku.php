@@ -26,7 +26,7 @@ if (is_set($_POST['submit'])) {
 
     } else {
 
-        $file = $_FILES["fileToUpload"]["tmp_name"])
+        $file = $_FILES["fileToUpload"]["tmp_name"];
         $h = new Haiku($file);
         $haiku = $h->getHaiku();
         echo $haiku;
