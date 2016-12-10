@@ -1,3 +1,19 @@
+<?php
+$haiku = false;
+if (isset($_POST['submit'])) {
+
+    if ($_FILES["fileToUpload"]["size"] > 5000) {
+        echo "Sorry, your file is too large.";
+
+    } else {
+
+        $file = $_FILES["fileToUpload"]["tmp_name"];
+        $h = new Haiku($file);
+        $haiku = $h->getHaiku();
+        //echo $haiku;
+    }
+}
+?>
 <html>
 <head>
 <title>David Caiati</title>
@@ -11,28 +27,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
+<p>
 <form action="/art/haiku.php" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
+    <input type="submit" value="get haiku" name="submit">
 </form>
 <p>
 <?php 
-
-if (is_set($_POST['submit'])) {
-
-    if ($_FILES["fileToUpload"]["size"] > 5000) {
-        echo "Sorry, your file is too large.";
-
-    } else {
-
-        $file = $_FILES["fileToUpload"]["tmp_name"];
-        $h = new Haiku($file);
-        $haiku = $h->getHaiku();
-        echo $haiku;
-    }
+if ($haiku !== false) {
+	echo $haiku;
 }
-
 ?>
 </body>
 </html>
@@ -64,7 +69,7 @@ class Haiku {
     var $dictionary = array();
     var $inputWords = null;
     var $vowels = "/[aeiouy]/";
-    var $dipthongs = "/ai|ea|uy|oy|oo|oi|au|au|ie|io|ay|ey|ou|ei|ee/";
+    var $dipthongs = "/oa|ai|ea|uy|oy|oo|oi|au|au|ie|io|ay|ey|ou|ei|ee/";
     var $trythongs = "/aye|eye|you/";
     var $validE = array("l");
     var $lines = array(5,7,5);
@@ -126,7 +131,8 @@ class Haiku {
         }
 
         // count silent 'e', but not valid 'e' endings
-        if ( ($word[$lastChar] == 'e') & (!in_array($word[$lastChar-1],$this->validE)) ) {
+        if ( (($word[$lastChar] == 'e') || strpos("es",$word,$lastchar-1))  
+			& (!in_array($word[$lastChar-1],$this->validE)) ) {
             $syls--;
         }
 
@@ -201,7 +207,3 @@ class Haiku {
     }
 }
 
-$file = "test.txt";
-$h = new Haiku($file);
-$haiku = $h->getHaiku();
-echo $haiku;
