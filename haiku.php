@@ -55,7 +55,9 @@ if (isset($_POST['submit'])) {
     <form action="/art/haiku.php" method="post" enctype="multipart/form-data">
      <div class="form-group text-center">
         <label for="fileToUpload">Select a file to upload</label>
-        <input class="text-center" type="file" name="fileToUpload" id="fileToUpload">
+        <span class="text-center">
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        </span>
         <small id="fileHelp" class="form-text text-muted">file must be a .txt file</small>
     </div>
     <div class="form-group">
