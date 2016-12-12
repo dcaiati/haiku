@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <div class="container">
@@ -47,13 +48,15 @@ if (isset($_POST['submit'])) {
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="get haiku" name="submit">
     </form>
-<p class="">
+    <p>
+    <div class="haiku-display">
 <?php 
 if ($haiku !== false) {
 	echo $haiku;
 }
 ?>
   </p>
+  </div>
   </div>
 </div><!-- /.container -->
 </body>
