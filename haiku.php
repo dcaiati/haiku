@@ -4,17 +4,17 @@ if (isset($_POST['submit'])) {
 
     if ($_FILES["fileToUpload"]["size"] > 5000) {
 
-        echo "Sorry, your file is too large.";
+        $haiku = "Sorry, your file is too large.";
+    } 
 
-    } elseif {
+    $array = explode('.', $_FILES['fileToUpload']['name']);
+    $extension = end($array);
 
-        $array = explode('.', $_FILES['fileToUpload']['name']);
-        $extension = end($array);
-        if ($extension != 'txt') {
-            echo "file must end in .txt";
-        }
+    if ($extension != 'txt') {
+        $haiku = "file must end in .txt";
+    }
 
-    } else {
+    if ($haiku === false) {
 
         $file = $_FILES["fileToUpload"]["tmp_name"];
         $h = new Haiku($file);
