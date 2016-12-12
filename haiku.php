@@ -3,7 +3,16 @@ $haiku = false;
 if (isset($_POST['submit'])) {
 
     if ($_FILES["fileToUpload"]["size"] > 5000) {
+
         echo "Sorry, your file is too large.";
+
+    } elseif {
+
+        $array = explode('.', $_FILES['fileToUpload']['name']);
+        $extension = end($array);
+        if ($extension != 'txt') {
+            echo "file must end in .txt";
+        }
 
     } else {
 
@@ -44,10 +53,16 @@ if (isset($_POST['submit'])) {
     <p class="lead">Generate a haiku from a .txt file you upload</p>
 
     <form action="/art/haiku.php" method="post" enctype="multipart/form-data">
-        Select file to upload:
+     <div class="form-group">
+        <label for="fileToUpload">Select a file to upload</label>
         <input type="file" name="fileToUpload" id="fileToUpload">
+        <small id="fileHelp" class="form-text text-muted">file must be a .txt file</small>
+    </div>
+    <div class="form-group">
         <input type="submit" value="get haiku" name="submit">
+    </div>
     </form>
+
     <p>
     <div class="haiku-display">
 <?php 
