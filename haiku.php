@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 <div class="container">
-  <div class="starter-template">
+  <div class="starter-template text-center">
     <h1>haiku Generator</h1>
     <p class="lead">Generate a haiku from a .txt file you upload</p>
 
