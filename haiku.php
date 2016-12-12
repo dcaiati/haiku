@@ -47,13 +47,14 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<p>&nbsp;</p>
 <div class="container">
   <div class="starter-template">
     <h1>haiku Generator</h1>
     <p class="lead">Generate a haiku from a .txt file you upload</p>
 
     <form action="/art/haiku.php" method="post" enctype="multipart/form-data">
-     <div class="form-group text-center">
+     <div class="form-group">
         <label for="fileToUpload">Select a file to upload</label>
         <input type="file" name="fileToUpload" id="fileToUpload">
         <small id="fileHelp" class="form-text text-muted">file must be a .txt file</small>
